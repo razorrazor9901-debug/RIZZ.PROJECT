@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizzqee Trader</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: share tech mono, monospace;
+            background: radial-gradient(circle at center, rgba(0,132,255,0.2), black),
+            linear-gradient(0deg, rgba(0,132,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,132,255,0.1) 1px, transparent 1px);
+background-size: 100% 100%, 40px 40px, 40px 40px;
+            color: #0084ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+
+            animation: moveGrid 10s linear infinite;
+        }
+
+        #bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+        @keyframes moveGrid {
+    from {
+        background-position: 0 0, 0 0, 0 0;
+    }
+    to {
+        background-position: 0 0, 40px 40px, 40px 40px;
+    }
+}
+
+body {
+    animation: moveGrid 10s linear infinite;
+}
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 40px;
+            text-shadow: 0 0 10px #0084ff;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin: 10px;
+            border: none;
+            background: #0400ff;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: rgb(67, 67, 67);
+        }
+
+        .menu {
+            display: none;
+            margin-top: 20px;
+        }
+
+        a {
+            display: block;
+            margin: 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg"></canvas>
+
+<div class="container">
+    <h1 id="title">CLICK FOR ASK ME</h1>
+    
+    <button onclick="masuk()">CLICK</button>
+
+    <div class="menu" id="menu">
+        <h1>Welcome to RIZZ.FX website 📈</h1>
+
+        <a href="Tiktok: https://www.tiktok.com/@rizz.fx?_r=1&_t=ZS-94qnRJSsnQK">
+            <button>Follow my TikTok</button>
+        </a>
+
+        <a href="https://wa.me/6283172495227">
+            <button>WhatsApp</button>
+        </a>
+
+        <a href="instagram: https://www.instagram.com/rzqhzmi_?igsh=N2FldmR6YTdvYWsw&utm_source=qr">
+            <button>Follow my Instagram</button>
+        </a>
+    </div>
+</div>
+
+<script>
+function masuk() {
+   document.querySelector(".container h1").style.display = "none";
+            document.querySelector("button").style.display = "none";
+            document.getElementById("menu").style.display = "block";
+        }
+
+        const canvas = document.getElementById("bg");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speedX: (Math.random() - 0.5),
+                speedY: (Math.random() - 0.5)
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0084ff";
+
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+</script>
+
+</body>
+</html>
